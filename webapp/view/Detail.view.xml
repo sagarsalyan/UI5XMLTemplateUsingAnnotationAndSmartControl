@@ -1,0 +1,75 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="app.SmartControlXMLTemplate.controller.Detail"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:uxap="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:template="http://schemas.sap.com/sapui5/extension/sap.ui.core.template/1">
+	<template:alias name=".AH" value="sap.ui.model.odata.AnnotationHelper">
+		<!--<template:alias name=".customAH" value="app.SmartControlXMLTemplate.model.AnnotationHelper">-->
+		<uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="true"
+			editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false">
+			<template:with path="meta>com.sap.vocabularies.UI.v1.HeaderInfo" helper=".AH.resolvePath" var="headerInfo">
+				<uxap:headerTitle>
+					<uxap:ObjectPageDynamicHeaderTitle>
+						<uxap:expandedHeading>
+							<HBox>
+								<Title text="{path:'headerInfo>Title/Value',formatter:'.AH.simplePath'}" wrapping="true"/>
+							</HBox>
+						</uxap:expandedHeading>
+						<uxap:snappedHeading>
+							<FlexBox fitContainer="true" alignItems="Center">
+								<Avatar src="{path:'headerInfo>ImageUrl',formatter:'.AH.simplePath'}" class="sapUiTinyMarginEnd"/>
+								<Title text="{path:'headerInfo>Title/Value',formatter:'.AH.simplePath'}" wrapping="true"/>
+							</FlexBox>
+						</uxap:snappedHeading>
+						<uxap:expandedContent>
+							<!--<Avatar src="{path:'headerInfo>ImageUrl',formatter:'.AH.simplePath'}" class="sapUiTinyMarginEnd"/>-->
+							<Text text="{path:'headerInfo>Description/Value',formatter:'.AH.simplePath'}"/>
+						</uxap:expandedContent>
+						<uxap:snappedContent>
+							<Text text="{path:'headerInfo>Description/Value',formatter:'.AH.simplePath'}"/>
+						</uxap:snappedContent>
+					</uxap:ObjectPageDynamicHeaderTitle>
+				</uxap:headerTitle>
+			</template:with>
+			<uxap:headerContent>
+				<FlexBox>
+					<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
+						<template:repeat
+							list="{path:'meta>', filters: {path: '@sapui.name', operator: 'StartsWith', value1: 'com.sap.vocabularies.UI.v1.DataPoint'}}"
+							var="dataPoint">
+							<ObjectAttribute title="{dataPoint>Title/String}" text="{path:'dataPoint>Value',formatter:'.AH.simplePath'}"/>
+						</template:repeat>
+					</layout:VerticalLayout>
+				</FlexBox>
+			</uxap:headerContent>
+			<uxap:sections>
+				<template:repeat list="{ path:'meta>com.sap.vocabularies.UI.v1.Facets' }" var="section">
+					<uxap:ObjectPageSection titleUppercase="false" title="{section>Label/String}" importance="Medium">
+						<uxap:subSections>
+							<uxap:ObjectPageSubSection>
+								<uxap:blocks>
+									<!--<Text text="Sagar"/>-->
+									<smartForm:SmartForm>
+										<template:repeat list="{section>Facets}" var="facet">
+											<template:with path="facet>Target" helper=".AH.resolvePath" var="target">
+												<smartForm:Group label="{path:'target>Label',formatter:'.AH.format'}">
+													<template:with path="target>Data" var="data">
+														<template:repeat list="{data>}">
+															<smartForm:GroupElement>
+																<smartField:SmartField value="{path:'data>Value',formatter:'.AH.simplePath'}"/>
+															</smartForm:GroupElement>
+														</template:repeat>
+													</template:with>
+												</smartForm:Group>
+											</template:with>
+										</template:repeat>
+									</smartForm:SmartForm>
+								</uxap:blocks>
+							</uxap:ObjectPageSubSection>
+						</uxap:subSections>
+					</uxap:ObjectPageSection>
+				</template:repeat>
+			</uxap:sections>
+		</uxap:ObjectPageLayout>
+		<!--</template:alias>-->
+	</template:alias>
+</mvc:View>

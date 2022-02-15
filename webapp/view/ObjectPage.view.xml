@@ -1,0 +1,6 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="app.SmartControlXMLTemplate.controller.ObjectPage" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Object Page" id="objectPage">
+		<content></content>
+	</Page>
+</mvc:View>
