@@ -12,6 +12,12 @@
 		<f:content>
 			<smartTable:SmartTable id="smartTable" entitySet="Products" smartFilterId="smartFilterBar" tableType="ResponsiveTable"
 				useExportToExcel="true">
+				<smartTable:customToolbar>
+					<OverflowToolbar class="orderListToolbar">
+						<ToolbarSpacer/>
+						<Button text="Create" press="onCreate"/>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
 				<Table sticky="ColumnHeaders,HeaderToolbar,InfoToolbar">
 					<ColumnListItem type="Navigation" press="onClickTableRow"></ColumnListItem>
 				</Table>

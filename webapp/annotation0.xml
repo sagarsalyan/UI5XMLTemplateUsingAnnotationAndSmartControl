@@ -5,6 +5,9 @@
 	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470968/UI.xml?api=v2">
 		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
 	</edmx:Reference>
+	<edmx:Reference Uri="https://wiki.scn.sap.com/wiki/download/attachments/448470974/Common.xml?api=v2">
+		<edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="SmartControlXMLTemplate.annotation0.EPM_REF_APPS_SHOP">
 			<Annotations Target="Metadata.Product">
@@ -111,6 +114,10 @@
 							<PropertyValue Property="Value" Path="Name"/>
 							<PropertyValue Property="Label" String="Name"/>
 						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="SupplierName"/>
+							<PropertyValue Property="Label" String="Supplier Name"/>
+						</Record>
 						<Record Type="UI.DataFieldWithUrl">
 							<PropertyValue Property="Url" Path="ImageUrl"/>
 							<PropertyValue Property="Value" Path="ImageUrl"/>
@@ -138,6 +145,28 @@
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="CurrencyCode"/>
 						<PropertyValue Property="Title" String="Currency Code"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="Metadata.Product/SupplierName">
+				<Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+					<Record Type="com.sap.vocabularies.Common.v1.ValueListType">
+						<PropertyValue Property="CollectionPath" String="Suppliers"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+									<!--Property of Products EntitySet-->
+									<PropertyValue Property="LocalDataProperty" PropertyPath="SupplierName"/>
+									<!--Property of Suppliers EntitySet-->
+									<PropertyValue Property="ValueListProperty" String="Id"/>
+								</Record>
+									<Record Type="com.sap.vocabularies.Common.v1.ValueListParameterOut">
+									<!--Property of Suppliers EntitySet-->
+									<PropertyValue Property="ValueListProperty" String="Name"/>
+								</Record>
+							
+							</Collection>
+						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
