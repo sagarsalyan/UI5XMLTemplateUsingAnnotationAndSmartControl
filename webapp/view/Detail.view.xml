@@ -42,7 +42,7 @@
 				</FlexBox>
 			</uxap:headerContent>
 			<uxap:sections>
-				<template:repeat list="{ path:'meta>com.sap.vocabularies.UI.v1.Facets' }" var="section">
+				<template:repeat list="{ path:'meta>com.sap.vocabularies.UI.v1.Facets#ThisQualifier' }" var="section">
 					<uxap:ObjectPageSection titleUppercase="false" title="{section>Label/String}" importance="Medium">
 						<uxap:subSections>
 							<uxap:ObjectPageSubSection>

@@ -73,7 +73,7 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Facets">
+				<Annotation Term="UI.Facets" Qualifier="ThisQualifier">
 					<Collection>
 						<Record Type="UI.CollectionFacet">
 							<PropertyValue Property="Facets">
